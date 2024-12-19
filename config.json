@@ -1,0 +1,23 @@
+{
+    "hoi4dir": "E:/SteamLibrary/steamapps/common/Hearts of Iron IV",
+    "include": [
+        "common/bop",
+        "common/continuous_focus",
+        "common/country_leader",
+        "common/dynamic_modifiers",
+        "common/ideas",
+        "common/military_industrial_organization",
+        "common/national_focus",
+        "common/special_projects",
+        "common/technologies",
+        "events",
+        "history/countries"
+    ],
+    "defines": {
+        "x10_define_overrides.lua": {
+            "NDefines.NBuildings.MAX_SHARED_SLOTS": 10000,
+            "NDefines.NBuildings.MAX_BUILDING_LEVELS": 7500
+        }
+    },
+    "modifiers_list": "modifiers.txt"
+}
