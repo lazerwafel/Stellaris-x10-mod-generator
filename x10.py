@@ -5,7 +5,17 @@ import json
 
 modifiers = []
 
-factor = 1000
+config_file = open("config.json", "r")
+config = json.load(config_file)
+config_file.close()
+
+hoi4dir = config["hoi4dir"]
+print("Hearts of Iron 4 X10 Mod Creation Script by iusNiko")
+print("Using HoI4 Directory: " + hoi4dir)
+print("PLEASE MAKE SURE THAT THE HOI4 DIRECTORY IS CORRECT! YOU CAN CHANGE IT IN THE CONFIG.JSON FILE")
+print("If you've changed the directory, please restart the script")
+
+factor = input("Enter desired factor: ")
 
 root_dir = "./workdir"
 base_dir = "./base"
