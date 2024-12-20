@@ -15,30 +15,33 @@ print("Using HoI4 Directory: " + hoi4dir)
 print("PLEASE MAKE SURE THAT THE HOI4 DIRECTORY IS CORRECT! YOU CAN CHANGE IT IN THE CONFIG.JSON FILE")
 print("If you've changed the directory, please restart the script")
 
-factor = input("Enter desired factor: ")
+factor = float(input("Enter desired factor: "))
 
-root_dir = "./workdir"
-base_dir = "./base"
+if hoi4dir[len(hoi4dir) - 1] != "/" and hoi4dir[len(hoi4dir) - 1] != "\\":
+    hoi4dir = hoi4dir + "/"
 
-shutil.rmtree(root_dir)
+mod_root_dir = "./mod/"
 
-print("Removed Workdir files")
+if os.path.exists(mod_root_dir):
+    shutil.rmtree(mod_root_dir)
 
-shutil.copytree(base_dir + "/", root_dir)
+print("Removed existing mod files")
 
-print("Copied Base files")
+for dirToCopy in config["include"]:
+    shutil.copytree(hoi4dir + dirToCopy, mod_root_dir + dirToCopy)
 
-mod_file = open("modifiers.txt", "r")
+print("Copied vanilla files")
+
+mod_file = open(config["modifiers_list"], "r")
 for modifier in mod_file:
+    if(modifier[0] == '#'):
+        continue
     modifiers.append(modifier.strip())
 mod_file.close()
 
-mod_file = open("dynamic_modifiers.txt", "r")
-for modifier in mod_file:
-    modifiers.append(modifier.strip())
-mod_file.close()
 
-for directory, subdirectories, files in os.walk(root_dir):
+# Edit copied files
+for directory, subdirectories, files in os.walk(mod_root_dir):
     for file in files:
         edited_file = open(os.path.join(directory, file), "r")
         print("Editing file: " + os.path.join(directory, file))
@@ -69,3 +72,16 @@ for directory, subdirectories, files in os.walk(root_dir):
         edited_file.close()
         edited_file = open(os.path.join(directory, file), "w")
         edited_file.write(new_content)
+
+# Create "defines"
+
+defines_folder = mod_root_dir + "common/defines/"
+
+os.makedirs(defines_folder, exist_ok=True)
+
+for define in config["defines"]:
+    print("Creating define file: " + define)
+    define_file = open(defines_folder + define, "w")
+    for property, value in config["defines"][define].items():
+        define_file.write(property + " = " + str(value) + "\n")
+    define_file.close()
