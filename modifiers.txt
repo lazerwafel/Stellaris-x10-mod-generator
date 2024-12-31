@@ -1,5 +1,8 @@
 # + before modifier name represents positive modifer (Player benefits from the modifer if it has higher value)
 # - before modifier name represents negative modifer (Player benefits from the modifer if it has lower value)
+# You can add ':' after modifier to create a custom factor
+# It allows user to pick a different factor for certain modifiers
+# Example: '+conscription:conscription_factor'
 
 #####################
 # REGULAR MODIFIERS #
@@ -29,7 +32,7 @@
 +industrial_capacity_factory
 +industrial_capacity_dockyard
 -consumer_goods_factor
-+conscription
++conscription:conscription_factor
 +cavalry_attack_factor
 +army_morale_factor
 +defensive_war_stability_factor
@@ -49,7 +52,7 @@
 +send_volunteer_size
 +political_power_gain
 +global_building_slots_factor
-+conscription_factor
++conscription_factor:conscription_factor
 +non_core_manpower
 +army_core_attack_factor
 +army_core_defence_factor
