@@ -20,7 +20,7 @@ custom_factors = {}
 
 mod_file = open(config["modifiers_list"], "r")
 for modifier in mod_file:
-    if(modifier[0] == '#'):
+    if(modifier[0] == '#' or len(modifier.strip()) < 2):
         continue
     modifiers.append(modifier.strip())
 mod_file.close()
@@ -64,22 +64,39 @@ for directory, subdirectories, files in os.walk(mod_root_dir):
             numbers = re.findall(r"-?\d+\.?\d*", line)
             if len(numbers) != 0:
                 for modifier in modifiers:
-                    modifier_pos = line.find(modifier[1:modifier.find(":")])
                     custom_factor_pos = modifier.find(":")
-                    if(modifier_pos == -1):
-                        continue
-                    if (modifier_pos == 0 or (modifier_pos > 0 and line[modifier_pos - 1] == " ") or (modifier_pos > 0 and line[modifier_pos - 1] == "\t")) and (line[modifier_pos + len(modifier[:modifier.find(":")]) - 1] == " " or line[modifier_pos + len(modifier[:modifier.find(":")]) - 1] == "="):
-                        
-                        if float(numbers[0]) < 0 and modifier[0] == '+':
+                    if custom_factor_pos == -1:
+                        modifier_pos = line.find(modifier[1:])
+                        if(modifier_pos == -1):
                             continue
-                        if float(numbers[0]) > 0 and modifier[0] == '-':
+                        if (modifier_pos == 0 or (modifier_pos > 0 and line[modifier_pos - 1] == " ") or (modifier_pos > 0 and line[modifier_pos - 1] == "\t")) and (line[modifier_pos + len(modifier) - 1] == " " or line[modifier_pos + len(modifier) - 1] == "="):
+                            if float(numbers[0]) < 0 and modifier[0] == '+':
+                                continue
+                            if float(numbers[0]) > 0 and modifier[0] == '-':
+                                continue
+
+                            current_factor = factor
+                            if custom_factor_pos != -1:
+                                current_factor = custom_factors[modifier[custom_factor_pos + 1:].strip()]
+                            new_line = line.replace(str(numbers[0]), "{:.3f}".format(float(numbers[0]) * current_factor))
+                            break
+                    else:
+                        modifier_pos = line.find(modifier[1:modifier.find(":")])
+                        if(modifier_pos == -1):
                             continue
+                        if (modifier_pos == 0 or (modifier_pos > 0 and line[modifier_pos - 1] == " ") or (modifier_pos > 0 and line[modifier_pos - 1] == "\t")) and (line[modifier_pos + len(modifier[:modifier.find(":")]) - 1] == " " or line[modifier_pos + len(modifier[:modifier.find(":")]) - 1] == "="):
+                            if float(numbers[0]) < 0 and modifier[0] == '+':
+                                continue
+                            if float(numbers[0]) > 0 and modifier[0] == '-':
+                                continue
+
+                            current_factor = factor
+                            if custom_factor_pos != -1:
+                                current_factor = custom_factors[modifier[custom_factor_pos + 1:].strip()]
+                            new_line = line.replace(str(numbers[0]), "{:.3f}".format(float(numbers[0]) * current_factor))
+                            break
+                    
                         
-                        current_factor = factor
-                        if custom_factor_pos != -1:
-                            current_factor = custom_factors[modifier[custom_factor_pos + 1:].strip()]
-                        new_line = line.replace(str(numbers[0]), "{:.3f}".format(float(numbers[0]) * current_factor))
-                        break
             new_content += new_line
         edited_file.close()
         edited_file = open(os.path.join(directory, file), "w")
