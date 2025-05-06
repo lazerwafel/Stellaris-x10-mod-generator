@@ -1,5 +1,5 @@
-This messy python script allows you to create "Hearts of Iron 4 x{number}" mode almost automatically.
-In order for it to work, you have to make sure that you've downloaded and installed Python, and that you have Hearts of Iron 4 installed on your hard drive.
+This messy python script allows you to create "Stellaris x{number}" mode almost automatically.
+In order for it to work, you have to make sure that you've downloaded and installed Python, and that you have Stellaris installed on your hard drive.
 To run this script, open CMD or terminal, navigate to folder where you cloned this repository, and type
 'python ./x10.py'
 Mod files will be generated in ./mod directory.
@@ -8,4 +8,6 @@ If you want to add any new modifiers, just add them to "modifiers.txt" file. Ins
 
 That's all I think...
 
-Have fun decimating Hearts of Iron 4 balance as much as you want!
+Have fun decimating Stellaris balance as much as you want!
+
+Credit to iusNiko for making the HoI4 version that i forked
