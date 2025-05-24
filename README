@@ -11,3 +11,22 @@ That's all I think...
 Have fun decimating Stellaris balance as much as you want!
 
 Credit to iusNiko for making the HoI4 version that i forked
+https://github.com/iusNiko/Hearts-of-Iron-4-x10-mod-generator/tree/main
+
+Limitations:
+
+some effects are handled in on_actions which cant be edited only called, this can potentaly bypassed by making a file to call them repetedly but im not sure how well that will work
+
+other effects are handled in the buildings and pop_jobs and i dont want to change the base numbers of the buildings and jobs in those files so this generator wont work for these effects
+
+Opinion modifiers are unchanged for the same reason as above (opinion_modifiers if you want to change it manualy)
+
+effects are sometimes just hardcoded and cant be changed (looking at you relics)
+
+i cant find where some modifiers are stored so they are unchanged
+
+event modifiers probabaly arent changed unless they referance one of the things that are changed
+
+
+here is a link to a noncomprehensive, messy sheet that has some of the modifiers that probably arent changed 
+https://docs.google.com/spreadsheets/d/1rTS2ICIhRyHXd2CdZz6xQwQHUkyt1LYj_L_Awe37LUQ/edit?usp=sharing
