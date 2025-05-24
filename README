@@ -23,7 +23,7 @@ Opinion modifiers are unchanged for the same reason as above (opinion_modifiers 
 
 effects are sometimes just hardcoded and cant be changed (looking at you relics)
 
-i cant find where some modifiers are stored so they are unchanged
+i cant find where some modifiers are stored so they are currently unchanged
 
 event modifiers probabaly arent changed unless they referance one of the things that are changed
 
