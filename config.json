@@ -1,23 +1,28 @@
 {
-    "hoi4dir": "C:/Program Files (x86)/Steam/steamapps/common/Hearts of Iron IV/",
+    "Stellarisdir": "C:/Program Files (x86)/Steam/steamapps/common/Stellaris",
     "include": [
-        "common/bop/",
-        "common/continuous_focus/",
-        "common/country_leader/",
-        "common/dynamic_modifiers/",
-        "common/ideas/",
-        "common/military_industrial_organization/",
-        "common/national_focus/",
-        "common/special_projects/",
-        "common/technologies/",
-        "common/buildings/",
-        "events/",
-        "history/countries/"
+        "common/traits/",
+		"common/traditions/",
+		"common/ethics/",
+		"common/governments/authorities/",
+		"common/governments/civics/", 
+		"common/governments/councilors/", 
+		"common/edicts/",
+		"common/policies/",
+		"common/scripted_variables/",
+		"common/ascension_perks/",
+		"common/starbase_buildings/",
+		"common/starbase_modules/",
+		"common/council_agendas/",
+		"common/federation_perks/",
+		"common/colony_types/",
+		"common/menace_perks/",
+		"common/menace_perks/",
+		"common/technology/"
     ],
+
     "defines": {
         "x10_define_overrides.lua": {
-            "NDefines.NBuildings.MAX_SHARED_SLOTS": 10000,
-            "NDefines.NBuildings.MAX_BUILDING_LEVELS": 7500
         }
     },
     "modifiers_list": "modifiers.txt"
