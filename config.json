@@ -17,7 +17,8 @@
 		"common/federation_perks/",
 		"common/colony_types/",
 		"common/menace_perks/",
-		"common/technology/"
+		"common/technology/",
+		"common/relics/"
     ],
 
     "defines": {
